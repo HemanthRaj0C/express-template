@@ -1,7 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const pool = require('./config/db');
 const healthRoutes = require('./routes/health');
+const userRoutes = require('./routes/users');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -12,8 +14,17 @@ app.use(express.json());
 
 // Routes
 app.use('/api', healthRoutes);
+app.use('/api', userRoutes);
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
+  
+  // Test database connection
+  try {
+    await pool.query('SELECT 1');
+    console.log('📦 MySQL connected successfully');
+  } catch (err) {
+    console.warn('⚠️  Database not connected:', err.message);
+  }
 });
