@@ -14,21 +14,13 @@ cp .env.example .env
 # Start MySQL (Docker)
 docker run -d --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=myapp mysql
 
-# Create users table (connect to DB and run)
-# CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100), email VARCHAR(100));
-
 # Start server
 npm run dev
 ```
 
 ## Available Routes
 
-- `GET /api/health` - Health check
-- `GET /api/users` - Get all users
-- `GET /api/users/:id` - Get user by ID
-- `POST /api/users` - Create user
-- `PUT /api/users/:id` - Update user
-- `DELETE /api/users/:id` - Delete user
+- `GET /api/health` - Health check endpoint (includes database connectivity status)
 
 ## Environment Variables
 
