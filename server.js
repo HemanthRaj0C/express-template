@@ -3,7 +3,6 @@ const express = require('express');
 const cors = require('cors');
 const { connectDB } = require('./config/db');
 const healthRoutes = require('./routes/health');
-const userRoutes = require('./routes/users');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -14,7 +13,6 @@ app.use(express.json());
 
 // Routes
 app.use('/api', healthRoutes);
-app.use('/api', userRoutes);
 
 // Start server
 async function start() {
